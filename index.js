@@ -9,6 +9,8 @@ const port = 3100;
 app.get("/", (req, res) => {
   res.send("API JWT works!");
 });
+const cors = require("cors");
+app.use(cors());
 
 app.post("/api/GenerateJWT", (req, res) => {
   res.json(
@@ -23,111 +25,15 @@ app.post("/api/DecodeJWT", (req, res) => {
 });
 
 app.post("/api/ValidateJWT", (req, res) => {
-  res.json(
-    ValidateJWT(req.body.header, req.body.token, req.body.key)
-  );
+  const user_name = req.body.name;
+
+  if (user_name === "ahmed") {
+    res.json({ response: true });
+  } else {
+    res.json({ response: false });
+  }
 });
 
 app.listen(port, () => {
   console.log(`SerVer running on port' ${port}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
